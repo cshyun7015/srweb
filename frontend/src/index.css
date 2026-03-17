@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 전역 스타일 추가 */
+body {
+  @apply bg-gray-50;
+}
