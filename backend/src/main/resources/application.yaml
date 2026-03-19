@@ -1,4 +1,14 @@
+# 1. 공통 설정 (어떤 프로파일에서도 적용됨)
 spring:
+  profiles:
+    active: test # 기본 실행 프로파일 설정 (로컬 개발용)
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: test
   datasource:
     url: jdbc:postgresql://db:5432/itil_db
     username: user
@@ -19,3 +29,31 @@ spring:
 
 server:
   port: 8080
+
+---
+# 3. Test 프로파일 (JUnit 및 로컬 H2 테스트용)
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    url: jdbc:h2:mem:itildb;MODE=PostgreSQL;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: create-drop # 테스트 시작 시 생성, 종료 시 삭제
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.H2Dialect
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
