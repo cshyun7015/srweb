@@ -8,6 +8,7 @@ const ENUMS = {
 
 const RequestModal = ({ initialData, onSave, onClose }) => {
   const [form, setForm] = useState({
+    company: '', // 추가
     title: '', requester: '', department: '', content: '',
     assignee: '', category: 'SOFTWARE', priority: 'NORMAL', status: 'OPEN',
     requestDate: new Date().toISOString().split('T')[0],
@@ -33,6 +34,12 @@ const RequestModal = ({ initialData, onSave, onClose }) => {
 
         <form onSubmit={(e) => { e.preventDefault(); onSave(form); }} className="p-6 overflow-y-auto space-y-4">
           <div className="grid grid-cols-2 gap-4">
+            <div className="col-span-2">
+            <label className="text-xs font-bold">고객사 명</label>
+            <input name="company" className="w-full p-2 border rounded" 
+                   value={form.company} onChange={e => setForm({...form, company: e.target.value})} 
+                   placeholder="예: 삼성전자, 구글코리아" />
+          </div>
             <div className="col-span-2">
               <label className="text-xs font-bold text-slate-500">요청 제목</label>
               <input name="title" required className="w-full mt-1 p-2 border rounded-lg outline-none focus:border-blue-500 font-medium" 

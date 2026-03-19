@@ -1,12 +1,14 @@
-const API_BASE_URL = 'http://192.168.55.191:3000/api/requests';
+//const API_BASE_URL = 'http://192.168.55.191:3000/api/requests';
+const API_BASE_URL = 'http://192.168.55.162:3000/api/requests';
 
 export const requestService = {
   async getAll(page, size, search) {
     const params = new URLSearchParams({
       page,
       size,
+      company: search.company || '', // 추가
       requester: search.requester || '',
-      content: search.content || '',
+      //content: search.content || '',
       title: search.title || '',
       requestDate: search.requestDate || ''
     });

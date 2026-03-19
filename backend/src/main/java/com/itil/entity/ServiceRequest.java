@@ -17,6 +17,8 @@ public class ServiceRequest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String company;     // 고객사 명 (추가)
+
     @Column(nullable = false)
     private String title;
 

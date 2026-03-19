@@ -8,11 +8,12 @@ import java.time.LocalDate;
 
 public interface RequestRepository extends JpaRepository<ServiceRequest, Long> {
     
-    Page<ServiceRequest> findByRequesterContainingAndContentContainingAndTitleContaining(
-        String requester, String content, String title, Pageable pageable
+    // 고객사(Company) 검색 조건 추가
+    Page<ServiceRequest> findByCompanyContainingAndRequesterContainingAndTitleContaining(
+        String company, String requester, String title, Pageable pageable
     );
 
-    Page<ServiceRequest> findByRequesterContainingAndContentContainingAndRequestDate(
-        String requester, String content, LocalDate requestDate, Pageable pageable
+    Page<ServiceRequest> findByCompanyContainingAndRequesterContainingAndRequestDate(
+        String company, String requester, LocalDate requestDate, Pageable pageable
     );
 }
